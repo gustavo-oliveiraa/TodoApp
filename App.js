@@ -6,12 +6,10 @@ const TodoApp = () => {
   const [inputText, setInputText] = useState('');
   const [taskList, setTaskList] = useState([]);
 
-  // Carrega as tarefas do armazenamento assim que o componente é montado
   useEffect(() => {
     fetchTasks();
   }, []);
 
-  // Recupera tarefas salvas do AsyncStorage
   const fetchTasks = async () => {
     try {
       const storedTasks = await AsyncStorage.getItem('taskList');
@@ -23,7 +21,6 @@ const TodoApp = () => {
     }
   };
 
-  // Salva as tarefas no AsyncStorage
   const storeTasks = async (updatedTasks) => {
     try {
       await AsyncStorage.setItem('taskList', JSON.stringify(updatedTasks));
@@ -32,7 +29,6 @@ const TodoApp = () => {
     }
   };
 
-  // Adiciona uma nova tarefa à lista
   const handleAddTask = () => {
     if (!inputText.trim()) return;
 
